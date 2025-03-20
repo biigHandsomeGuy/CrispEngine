@@ -1,23 +1,17 @@
 #pragma once
 
-#include <Windows.h>
-
-
 extern Crisp::Application* Crisp::CreateApplication();
 
-int WINAPI wWinMain(
-	HINSTANCE hInstance, 
-	HINSTANCE hPrevInstance, 
-	PWSTR pCmdLine, 
-	int nCmdShow)
+int main()
 {
-	::AllocConsole();
-	FILE* fp;
-	freopen_s(&fp, "CONOUT$", "w", stdout);
-	std::cout << "Hello\n";
+	Crisp::Log::Init();
+	CR_CORE_INFO("Initialized Log!");
+
 	auto app = Crisp::CreateApplication();
+
 
 	app->Run();
 
 	delete app;
+	return 0;
 }

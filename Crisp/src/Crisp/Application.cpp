@@ -1,6 +1,9 @@
+#include "pch.h"
+
 #include "Application.h"
 
-
+#include "Crisp/Log.h"
+#include "Crisp/Events/ApplicationEvent.h"
 
 namespace Crisp
 {
@@ -13,8 +16,10 @@ namespace Crisp
 	}
 	void Application::Run()
 	{
-		while (true)
-			std::cout << "hello\n";
+		WindowResizeEvent e(1080, 720);
+		CR_TRACE(e.ToString());
+		// while (true)
+		// { }
 	}
 }
 

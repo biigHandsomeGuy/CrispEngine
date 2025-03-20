@@ -1,7 +1,8 @@
 #pragma once
 
-#include <iostream>
+
 #include "Crisp/Application.h"
+#include "Crisp/Log.h"
 
 // -----------EntryPoint--------
 #include "Crisp/EntryPoint.h"

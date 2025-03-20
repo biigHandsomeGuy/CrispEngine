@@ -1,0 +1,3 @@
+[submodule "Crisp/vendor/spdlog"]
+	path = Crisp/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git

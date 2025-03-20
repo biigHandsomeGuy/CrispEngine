@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core.h"
-
+#include "Events/Event.h"
 namespace Crisp
 {
 	class CRISP_API Application

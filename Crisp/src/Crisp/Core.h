@@ -6,3 +6,4 @@
 	#define CRISP_API __declspec(dllimport)
 #endif // CR_BUILD_DLL
 
+#define BIT(x) (1 << x)
