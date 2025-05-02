@@ -62,6 +62,7 @@
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,6 +100,8 @@
     <ClInclude Include="src\Crisp\Events\Event.h" />
     <ClInclude Include="src\Crisp\Events\KeyEvent.h" />
     <ClInclude Include="src\Crisp\Events\MouseEvent.h" />
+    <ClInclude Include="src\Crisp\Layer.h" />
+    <ClInclude Include="src\Crisp\LayerStack.h" />
     <ClInclude Include="src\Crisp\Log.h" />
     <ClInclude Include="src\Crisp\Window.h" />
     <ClInclude Include="src\pch.h" />
@@ -106,6 +109,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Crisp\Application.cpp" />
+    <ClCompile Include="src\Crisp\Layer.cpp" />
+    <ClCompile Include="src\Crisp\LayerStack.cpp" />
     <ClCompile Include="src\Crisp\Log.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -2,6 +2,7 @@
 
 
 #include "Crisp/Application.h"
+#include "Crisp/Layer.h"
 #include "Crisp/Log.h"
 
 // -----------EntryPoint--------
