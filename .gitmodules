@@ -4,3 +4,6 @@
 [submodule "Crisp/vendor/GLFW"]
 	path = Crisp/vendor/GLFW
 	url = https://github.com/biigHandsomeGuy/glfw.git
+[submodule "Crisp/vendor/imgui"]
+	path = Crisp/vendor/imgui
+	url = https://github.com/biigHandsomeGuy/imgui.git

@@ -56,9 +56,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_GLFW_WIN32;CR_ENABLE_ASSERTS;CR_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_GLFW_WIN32;CR_ENABLE_ASSERTS;CR_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crisp\vendor\spdlog\include;$(SolutionDir)Crisp\src;$(SolutionDir)Crisp\vendor\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crisp\vendor\spdlog\include;$(SolutionDir)Crisp\src;$(SolutionDir)Crisp\vendor\GLFW\include;$(SolutionDir)Crisp\vendor\GLAD\include;$(SolutionDir)Crisp\vendor\imgui</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -76,9 +76,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CR_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;CR_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Crisp\vendor\spdlog\include;$(SolutionDir)Crisp\src;$(SolutionDir)Crisp\vendor\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Crisp\vendor\spdlog\include;$(SolutionDir)Crisp\src;$(SolutionDir)Crisp\vendor\GLFW\include;$(SolutionDir)Crisp\vendor\GLAD\include;$(SolutionDir)Crisp\vendor\imgui</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -100,15 +100,18 @@
     <ClInclude Include="src\Crisp\Events\Event.h" />
     <ClInclude Include="src\Crisp\Events\KeyEvent.h" />
     <ClInclude Include="src\Crisp\Events\MouseEvent.h" />
+    <ClInclude Include="src\Crisp\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Crisp\Layer.h" />
     <ClInclude Include="src\Crisp\LayerStack.h" />
     <ClInclude Include="src\Crisp\Log.h" />
     <ClInclude Include="src\Crisp\Window.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Crisp\Application.cpp" />
+    <ClCompile Include="src\Crisp\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Crisp\Layer.cpp" />
     <ClCompile Include="src\Crisp\LayerStack.cpp" />
     <ClCompile Include="src\Crisp\Log.cpp" />
@@ -116,6 +119,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +128,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
       <Project>{86c7acec-f209-43c0-9abe-a39cf6c10af2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\Imgui.vcxproj">
+      <Project>{e087650d-4c9c-8dbe-151e-311e81f189ef}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

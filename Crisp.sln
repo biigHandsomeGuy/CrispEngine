@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "Crisp\vendor\GLFW\G
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLAD", "Crisp\vendor\GLAD\GLAD.vcxproj", "{74361F01-56D4-479A-B553-FE2C7C675B92}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "Crisp\vendor\imgui\Imgui.vcxproj", "{E087650D-4C9C-8DBE-151E-311E81F189EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{74361F01-56D4-479A-B553-FE2C7C675B92}.Release|x64.Build.0 = Release|x64
 		{74361F01-56D4-479A-B553-FE2C7C675B92}.Release|x86.ActiveCfg = Release|Win32
 		{74361F01-56D4-479A-B553-FE2C7C675B92}.Release|x86.Build.0 = Release|Win32
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Debug|x64.ActiveCfg = Debug|x64
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Debug|x64.Build.0 = Debug|x64
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Debug|x86.ActiveCfg = Debug|x64
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Debug|x86.Build.0 = Debug|x64
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Release|x64.ActiveCfg = Release|x64
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Release|x64.Build.0 = Release|x64
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Release|x86.ActiveCfg = Release|x64
+		{E087650D-4C9C-8DBE-151E-311E81F189EF}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
