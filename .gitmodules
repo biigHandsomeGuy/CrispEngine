@@ -7,3 +7,6 @@
 [submodule "Crisp/vendor/imgui"]
 	path = Crisp/vendor/imgui
 	url = https://github.com/biigHandsomeGuy/imgui.git
+[submodule "Crisp/vendor/glm"]
+	path = Crisp/vendor/glm
+	url = https://github.com/biigHandsomeGuy/glm.git

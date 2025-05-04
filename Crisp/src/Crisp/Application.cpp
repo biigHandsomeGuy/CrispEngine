@@ -20,7 +20,8 @@ namespace Crisp
 				OnEvent(e);
 			});
 
-		
+		m_ImGuiLayer = std::make_unique<ImGuiLayer>();
+		PushOverlay(m_ImGuiLayer.get());
 	}
 
 	Application::~Application()
@@ -68,9 +69,16 @@ namespace Crisp
 			{
 				layer->OnUpdate();
 			}
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnImGuiRender();
+			}
+			m_ImGuiLayer->End();
+
 
 			auto [x, y] = Input::GetMousePosition();
-			//CR_TRACE("{0}, {1}", x, y);
+			
 
 			m_Window->OnUpdate();
 		}

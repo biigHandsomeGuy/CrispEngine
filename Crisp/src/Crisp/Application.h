@@ -6,6 +6,8 @@
 #include "Events/ApplicationEvent.h"
 #include "Crisp/LayerStack.h"
 
+#include "Crisp/ImGui/ImGuiLayer.h"
+
 namespace Crisp
 {
 	class CRISP_API Application
@@ -27,6 +29,7 @@ namespace Crisp
 		bool OnWindowClosed(WindowCloseEvent&);
 
 		std::unique_ptr<Window> m_Window;
+		std::unique_ptr<ImGuiLayer> m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
