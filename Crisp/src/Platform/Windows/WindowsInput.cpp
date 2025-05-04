@@ -40,6 +40,6 @@ namespace Crisp
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
 
-		return std::pair<float, float>(xpos, ypos);
+		return { (float)xpos, (float)ypos };
 	}
 }

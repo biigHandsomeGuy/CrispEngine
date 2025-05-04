@@ -5,8 +5,10 @@
 #include "Crisp/Events/MouseEvent.h"
 #include "Crisp/Events/KeyEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
+
 #include <GLFW/glfw3.h>
+
 
 namespace Crisp
 {
@@ -36,7 +38,8 @@ namespace Crisp
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
@@ -47,6 +50,7 @@ namespace Crisp
 
 		CR_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
+		
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
@@ -57,9 +61,12 @@ namespace Crisp
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		CR_CORE_ASSERT(status, "Failed to initialize glad");
+
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
+
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

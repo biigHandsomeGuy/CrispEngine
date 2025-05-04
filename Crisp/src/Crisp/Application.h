@@ -33,6 +33,7 @@ namespace Crisp
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
+		uint32_t m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 	private:
 		static Application* s_Instance;
 	};
