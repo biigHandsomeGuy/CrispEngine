@@ -20,8 +20,8 @@ namespace Crisp
 				OnEvent(e);
 			});
 
-		m_ImGuiLayer = std::make_unique<ImGuiLayer>();
-		PushOverlay(m_ImGuiLayer.get());
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application()

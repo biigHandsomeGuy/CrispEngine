@@ -423,8 +423,8 @@
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
       <Project>{86c7acec-f209-43c0-9abe-a39cf6c10af2}</Project>
     </ProjectReference>
-    <ProjectReference Include="vendor\imgui\Imgui.vcxproj">
-      <Project>{e087650d-4c9c-8dbe-151e-311e81f189ef}</Project>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{7baa8ab0-bbcf-4cdf-ab28-c42a04cbc0b7}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

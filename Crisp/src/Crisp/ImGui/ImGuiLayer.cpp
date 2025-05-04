@@ -9,8 +9,7 @@
 #include <GLFW/glfw3.h>
 
 #include "Crisp/Application.h"
-#define IMGUI_HAS_DOCK
-#define IMGUI_ENABLE_VIEWPORTS
+
 namespace Crisp
 {
 	ImGuiLayer::ImGuiLayer()
@@ -34,6 +33,14 @@ namespace Crisp
 		ImGui::StyleColorsDark();
 		//ImGui::StyleColorsLight();
 
+		 // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
+		ImGuiStyle& style = ImGui::GetStyle();
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			style.WindowRounding = 0.0f;
+			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+		}
+
 		// Setup Platform/Renderer backends
 
 		Application& app = Application::Get();
@@ -43,6 +50,8 @@ namespace Crisp
 		ImGui_ImplGlfw_InstallEmscriptenCallbacks(window, "#canvas");
 #endif
 		ImGui_ImplOpenGL3_Init("#version 410");
+
+		
 	}
 	void ImGuiLayer::OnDetach()
 	{
@@ -75,7 +84,13 @@ namespace Crisp
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			GLFWwindow* backup_current_context = glfwGetCurrentContext();
+			ImGui::UpdatePlatformWindows();
+			ImGui::RenderPlatformWindowsDefault();
+			glfwMakeContextCurrent(backup_current_context);
+		}
 	}
 	
 }
