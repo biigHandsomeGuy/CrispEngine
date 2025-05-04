@@ -3,7 +3,7 @@
 #include "Application.h"
 
 #include "Crisp/Events/ApplicationEvent.h"
-
+#include "Input.h"
 #include <glad/glad.h>
 namespace Crisp
 {
@@ -68,6 +68,9 @@ namespace Crisp
 			{
 				layer->OnUpdate();
 			}
+
+			auto [x, y] = Input::GetMousePosition();
+			//CR_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}
