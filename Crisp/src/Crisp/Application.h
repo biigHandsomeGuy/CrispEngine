@@ -8,6 +8,8 @@
 
 #include "Crisp/ImGui/ImGuiLayer.h"
 
+#include "Crisp/Renderer/Shader.h"
+
 namespace Crisp
 {
 	class CRISP_API Application
@@ -34,6 +36,7 @@ namespace Crisp
 		LayerStack m_LayerStack;
 
 		uint32_t m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};

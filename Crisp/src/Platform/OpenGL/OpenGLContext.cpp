@@ -4,6 +4,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#define glGetStringView(x) reinterpret_cast<const char*>(glGetString(x))
 
 namespace Crisp
 {
@@ -17,8 +18,9 @@ namespace Crisp
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		CR_CORE_ASSERT(status, "Failed to initialize glad");
+		
 
-		// CR_CORE_INFO("OpenGl Renderer: {0}", glGetString(GL_VENDOR));
+		CR_CORE_INFO("OpenGl Renderer: {0}", glGetStringView(GL_VENDOR));
 	}
 	void OpenGLContext::SwapBuffers()
 	{
