@@ -945,6 +945,15 @@
     <ClInclude Include="src\Crisp\Renderer\Shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\Crisp\Renderer\Buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Renderer\Renderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Crisp\Application.cpp">
@@ -978,6 +987,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Crisp\Renderer\Shader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crisp\Renderer\Buffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crisp\Renderer\Renderer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
