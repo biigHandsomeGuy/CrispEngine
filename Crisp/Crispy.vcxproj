@@ -111,6 +111,7 @@
     <ClInclude Include="src\Crisp\MouseButtonCodes.h" />
     <ClInclude Include="src\Crisp\Renderer\Buffer.h" />
     <ClInclude Include="src\Crisp\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Crisp\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Crisp\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Crisp\Renderer\Renderer.h" />
     <ClInclude Include="src\Crisp\Renderer\RendererAPI.h" />
@@ -421,6 +422,7 @@
     <ClCompile Include="src\Crisp\LayerStack.cpp" />
     <ClCompile Include="src\Crisp\Log.cpp" />
     <ClCompile Include="src\Crisp\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Crisp\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Crisp\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Crisp\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Crisp\Renderer\RendererAPI.cpp" />
