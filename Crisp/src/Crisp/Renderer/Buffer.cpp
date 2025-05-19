@@ -11,10 +11,10 @@ namespace Crisp
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::Nono:
+		case RendererAPI::API::Nono:
 			CR_CORE_ASSERT(false, "Unchoose RendererAPI");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexBuffer(vertices, size);
 		}
 
@@ -24,10 +24,10 @@ namespace Crisp
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::Nono:
+		case RendererAPI::API::Nono:
 			CR_CORE_ASSERT(false, "Unchoose RendererAPI");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLIndexBuffer(indices, size);
 		}
 
