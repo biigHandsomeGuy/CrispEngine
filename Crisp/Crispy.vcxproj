@@ -97,6 +97,7 @@
     <ClInclude Include="src\Crisp.h" />
     <ClInclude Include="src\Crisp\Application.h" />
     <ClInclude Include="src\Crisp\Core.h" />
+    <ClInclude Include="src\Crisp\Core\TimeStep.h" />
     <ClInclude Include="src\Crisp\EntryPoint.h" />
     <ClInclude Include="src\Crisp\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Crisp\Events\Event.h" />

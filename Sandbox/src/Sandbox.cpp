@@ -120,16 +120,18 @@ public:
 
 		m_BlueShader.reset(new Crisp::Shader(blueVS, bluePS));
 	}
-	void OnUpdate() override
+	void OnUpdate(Crisp::TimeStep ts) override
 	{
+		CR_TRACE("{0}", ts.GetMilliseconds());
+
 		if (Crisp::Input::IsKeyPressed(CR_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraSpeed;
+			m_CameraPosition.x -= m_CameraSpeed * ts;
 		if (Crisp::Input::IsKeyPressed(CR_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraSpeed;
+			m_CameraPosition.x += m_CameraSpeed * ts;
 		if (Crisp::Input::IsKeyPressed(CR_KEY_UP))
-			m_CameraPosition.y += m_CameraSpeed;
+			m_CameraPosition.y += m_CameraSpeed * ts;
 		if (Crisp::Input::IsKeyPressed(CR_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraSpeed;
+			m_CameraPosition.y -= m_CameraSpeed * ts;
 
 		Crisp::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Crisp::RenderCommand::Clear();
@@ -164,7 +166,7 @@ private:
 
 	Crisp::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.1;
+	float m_CameraSpeed = 3;
 };
 
 class Sandbox : public Crisp::Application

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Crisp/Core.h"
+#include "Crisp/Core/TimeStep.h"
 #include "Crisp/Events/Event.h"
 
 namespace Crisp
@@ -13,7 +14,7 @@ namespace Crisp
 
 		virtual void OnAttach(){}
 		virtual void OnDetach(){}
-		virtual void OnUpdate(){}
+		virtual void OnUpdate(TimeStep ts){}
 		virtual void OnImGuiRender(){}
 		virtual void OnEvent(Event&){}
 

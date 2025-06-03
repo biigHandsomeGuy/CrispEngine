@@ -972,6 +972,9 @@
     <ClInclude Include="src\Crisp\Renderer\OrthographicCamera.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\Crisp\Core\TimeStep.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Crisp\Application.cpp">

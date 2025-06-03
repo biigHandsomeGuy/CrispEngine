@@ -5,7 +5,7 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "Crisp/LayerStack.h"
-
+#include "Crisp/Core/TimeStep.h"
 #include "Crisp/ImGui/ImGuiLayer.h"
 
 #include "Crisp/Renderer/Shader.h"
@@ -32,11 +32,14 @@ namespace Crisp
 	private:
 		bool OnWindowClosed(WindowCloseEvent&);
 
+	private:
+
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
+		TimeStep m_TimeStep;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};
