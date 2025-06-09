@@ -1,6 +1,7 @@
 #include <Crisp.h>
 
 #include "imgui.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public Crisp::Layer
 {
@@ -66,13 +67,14 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
-
+			uniform mat4 u_Transform;
+			
 			out vec3 v_Position;
 			out vec4 v_Color;
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0f);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0f);
 				v_Color = a_Color;
 			}
 		)";
@@ -90,35 +92,40 @@ public:
 				color = v_Color;
 			}
 		)";
-		m_Shader.reset(new Crisp::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Crisp::Shader::Create(vertexSrc, fragmentSrc));
 
-		std::string blueVS = R"(
+		std::string flatColorVS = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0f);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0f);
 			}
 		)";
 
-		std::string bluePS = R"(
+		std::string flatColorPS = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
+
 			in vec3 v_Position;
+
+			uniform vec3 u_Color;
+			
 			void main()
 			{
-				color = vec4(0.2f, 0.3f, 0.8f, 1.0f);
+				color = vec4(u_Color, 1.0f);
 			}
 		)";
 
-		m_BlueShader.reset(new Crisp::Shader(blueVS, bluePS));
+		m_FlatColorShader.reset(Crisp::Shader::Create(flatColorVS, flatColorPS));
 	}
 	void OnUpdate(Crisp::TimeStep ts) override
 	{
@@ -141,7 +148,13 @@ public:
 
 		Crisp::Renderer::BeginScene(m_Camera);
 
-		Crisp::Renderer::Submit(m_BlueShader, m_SquareVA);
+
+		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
+		Crisp::Renderer::Submit(m_FlatColorShader, m_SquareVA);
+
+		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_Shader)->Bind();
 		Crisp::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Crisp::Renderer::EndScene();
@@ -153,7 +166,10 @@ public:
 
 	void OnImGuiRender() override
 	{
-		ImGui::Begin("ss");
+		ImGui::Begin("Settings");
+
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+
 		ImGui::End();
 	}
 private:
@@ -161,12 +177,16 @@ private:
 	std::shared_ptr<Crisp::Shader> m_Shader;
 	std::shared_ptr<Crisp::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Crisp::Shader> m_BlueShader;
+	std::shared_ptr<Crisp::Shader> m_FlatColorShader;
 	std::shared_ptr<Crisp::VertexArray> m_SquareVA;
 
 	Crisp::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
 	float m_CameraSpeed = 3;
+
+	glm::mat4 m_SqureTransform;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.7f };
 };
 
 class Sandbox : public Crisp::Application
