@@ -17,6 +17,7 @@
 #include "Crisp/Renderer/GraphicsContext.h"
 #include "Crisp/Renderer/RenderCommand.h"
 #include "Crisp/Renderer/Shader.h"
+#include "Crisp/Renderer/Texture.h"
 #include "Crisp/Renderer/VertexArray.h"
 
 // -----------EntryPoint---------

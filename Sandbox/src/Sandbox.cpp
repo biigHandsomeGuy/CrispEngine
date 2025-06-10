@@ -2,13 +2,14 @@
 
 #include "imgui.h"
 #include "Platform/OpenGL/OpenGLShader.h"
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Crisp::Layer
 {
 public:
 	ExampleLayer()
 		:Layer("Example"),
-		m_Camera(-1.6f, 1.6f, -1.2f, 1.2f)
+		m_Camera(-1.5f, 1.5f, -1.0f, 1.0f)
 	{
 		m_VertexArray.reset(Crisp::VertexArray::Create());
 
@@ -38,10 +39,10 @@ public:
 
 		float squareVertices[] =
 		{
-			-0.5f, -0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f
 		};
 
 		std::shared_ptr<Crisp::VertexBuffer> squareVB;
@@ -49,6 +50,7 @@ public:
 
 		Crisp::BufferLayout squareLayout = {
 			{Crisp::ShaderDataType::Float3, "a_Position"},
+			{Crisp::ShaderDataType::Float2, "a_TexCoord"},
 		};
 		squareVB->SetLayout(squareLayout);
 
@@ -126,6 +128,48 @@ public:
 		)";
 
 		m_FlatColorShader.reset(Crisp::Shader::Create(flatColorVS, flatColorPS));
+
+		std::string textureVS = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0f);
+			}
+		)";
+
+		std::string texturePS = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+			
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Crisp::Shader::Create(textureVS, texturePS));
+
+		m_Texture = Crisp::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_LogoTexture = Crisp::Texture2D::Create("assets/textures/logo.png");
+
+		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
 	}
 	void OnUpdate(Crisp::TimeStep ts) override
 	{
@@ -152,10 +196,16 @@ public:
 		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
-		Crisp::Renderer::Submit(m_FlatColorShader, m_SquareVA);
+		m_Texture->Bind();
+		Crisp::Renderer::Submit(m_TextureShader, m_SquareVA);
 
-		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_Shader)->Bind();
-		Crisp::Renderer::Submit(m_Shader, m_VertexArray);
+		m_LogoTexture->Bind();
+		Crisp::Renderer::Submit(m_TextureShader, m_SquareVA);
+
+
+		// Triangle
+		//std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_Shader)->Bind();
+		//Crisp::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Crisp::Renderer::EndScene();
 	}
@@ -177,8 +227,10 @@ private:
 	std::shared_ptr<Crisp::Shader> m_Shader;
 	std::shared_ptr<Crisp::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Crisp::Shader> m_FlatColorShader;
+	std::shared_ptr<Crisp::Shader> m_FlatColorShader, m_TextureShader;
 	std::shared_ptr<Crisp::VertexArray> m_SquareVA;
+
+	std::shared_ptr<Crisp::Texture2D> m_Texture, m_LogoTexture;
 
 	Crisp::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

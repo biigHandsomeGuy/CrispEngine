@@ -5,7 +5,12 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 namespace Crisp
 {
-	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData ;
+	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
+
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
 
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
