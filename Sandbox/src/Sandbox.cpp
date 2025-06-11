@@ -4,6 +4,7 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 #include <glm/gtc/type_ptr.hpp>
 
+
 class ExampleLayer : public Crisp::Layer
 {
 public:
@@ -94,7 +95,7 @@ public:
 				color = v_Color;
 			}
 		)";
-		m_Shader.reset(Crisp::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Crisp::Shader::Create("triangle", vertexSrc, fragmentSrc);
 
 		std::string flatColorVS = R"(
 			#version 330 core
@@ -127,15 +128,15 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(Crisp::Shader::Create(flatColorVS, flatColorPS));
+		m_FlatColorShader = Crisp::Shader::Create("flatShader", flatColorVS, flatColorPS);
 
-		m_TextureShader.reset(Crisp::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Crisp::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = Crisp::Texture2D::Create("assets/textures/logo.png");
 
-		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Crisp::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Crisp::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
 	void OnUpdate(Crisp::TimeStep ts) override
@@ -164,10 +165,10 @@ public:
 		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		m_Texture->Bind();
-		Crisp::Renderer::Submit(m_TextureShader, m_SquareVA);
+		Crisp::Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA);
 
 		m_LogoTexture->Bind();
-		Crisp::Renderer::Submit(m_TextureShader, m_SquareVA);
+		Crisp::Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA);
 
 
 		// Triangle
@@ -190,11 +191,12 @@ public:
 		ImGui::End();
 	}
 private:
+	Crisp::ShaderLibrary m_ShaderLibrary;
 
 	std::shared_ptr<Crisp::Shader> m_Shader;
 	std::shared_ptr<Crisp::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Crisp::Shader> m_FlatColorShader, m_TextureShader;
+	std::shared_ptr<Crisp::Shader> m_FlatColorShader;
 	std::shared_ptr<Crisp::VertexArray> m_SquareVA;
 
 	std::shared_ptr<Crisp::Texture2D> m_Texture, m_LogoTexture;
