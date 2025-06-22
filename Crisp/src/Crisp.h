@@ -20,6 +20,9 @@
 #include "Crisp/Renderer/Texture.h"
 #include "Crisp/Renderer/VertexArray.h"
 
+#include "Crisp/Renderer/OrthographicCamera.h"
+#include "Crisp/OrthographicCameraController.h"
+
 // -----------EntryPoint---------
 #include "Crisp/EntryPoint.h"
 // ------------------------------

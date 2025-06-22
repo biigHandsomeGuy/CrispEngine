@@ -8,10 +8,13 @@ namespace Crisp
 	{
 	public:
 		OrthographicCamera(float left, float right, float bottom, float top);
+		void SetProjection(float left, float right, float bottom, float top);
 
-		void SetPosition(const glm::vec3& position)
-		{
-			m_Position = position;
+
+		void SetPosition(const glm::vec3& position) 
+		{ 
+			m_Position = position; 
+			RecalculateViewMatrix();
 		}
 		void SetRotation(float rotation)
 		{
@@ -19,28 +22,13 @@ namespace Crisp
 			RecalculateViewMatrix();
 		}
 
-		const glm::vec3 GetPosition() const
-		{
-			return m_Position;
-		}
+		const glm::vec3 GetPosition() const { return m_Position; }
 
-		float GetRotation() const
-		{
-			return m_Rotation;
-		}
+		float GetRotation() const { return m_Rotation; }
 
-		const glm::mat4& GetViewMatrix() const
-		{
-			return m_ViewMatrix;
-		}
-		const glm::mat4& GetProjectionMatrix() const
-		{
-			return m_ProjectionMatrix;
-		}
-		const glm::mat4& GetViewProjectionMatrix() const
-		{
-			return m_ViewProjectionMatrix;
-		}
+		const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
+		const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
+		const glm::mat4& GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
 
 	private:
 		void RecalculateViewMatrix();
@@ -53,6 +41,8 @@ namespace Crisp
 		glm::vec3 m_Position = glm::vec3(0.0f);
 		float m_Rotation = 0.0f;
 	};
+
+
 
 
 }

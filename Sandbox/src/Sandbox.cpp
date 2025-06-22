@@ -10,7 +10,7 @@ class ExampleLayer : public Crisp::Layer
 public:
 	ExampleLayer()
 		:Layer("Example"),
-		m_Camera(-1.5f, 1.5f, -1.0f, 1.0f)
+		m_CameraController(1080.0f / 720.0f, true)
 	{
 		m_VertexArray.reset(Crisp::VertexArray::Create());
 
@@ -141,24 +141,13 @@ public:
 	}
 	void OnUpdate(Crisp::TimeStep ts) override
 	{
-		// CR_TRACE("{0}", ts.GetMilliseconds());
+		m_CameraController.OnUpdate(ts);
 
-		if (Crisp::Input::IsKeyPressed(CR_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraSpeed * ts;
-		if (Crisp::Input::IsKeyPressed(CR_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraSpeed * ts;
-		if (Crisp::Input::IsKeyPressed(CR_KEY_UP))
-			m_CameraPosition.y += m_CameraSpeed * ts;
-		if (Crisp::Input::IsKeyPressed(CR_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraSpeed * ts;
-
+		// Rendering
 		Crisp::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Crisp::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(0.0f);
-
-		Crisp::Renderer::BeginScene(m_Camera);
+		Crisp::Renderer::BeginScene(m_CameraController.GetCamera());
 
 
 		std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_FlatColorShader)->Bind();
@@ -166,20 +155,20 @@ public:
 
 		m_Texture->Bind();
 		Crisp::Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA);
-
+		
 		m_LogoTexture->Bind();
 		Crisp::Renderer::Submit(m_ShaderLibrary.Get("Texture"), m_SquareVA);
 
 
 		// Triangle
-		//std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_Shader)->Bind();
-		//Crisp::Renderer::Submit(m_Shader, m_VertexArray);
+		// std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_Shader)->Bind();
+		Crisp::Renderer::Submit(m_FlatColorShader, m_VertexArray);
 
 		Crisp::Renderer::EndScene();
 	}
 	void OnEvent(Crisp::Event& event) override 
 	{
-		
+		m_CameraController.OnEvent(event);
 	}
 
 	void OnImGuiRender() override
@@ -201,9 +190,7 @@ private:
 
 	std::shared_ptr<Crisp::Texture2D> m_Texture, m_LogoTexture;
 
-	Crisp::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 3;
+	Crisp::OrthographicCameraController m_CameraController;
 
 	glm::mat4 m_SqureTransform;
 
