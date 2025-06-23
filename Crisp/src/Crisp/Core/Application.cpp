@@ -44,6 +44,11 @@ namespace Crisp
 				return OnWindowClosed(e);
 			});
 
+		dispather.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e)
+			{
+				return OnWindowResized(e);
+			});
+
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
 			(*--it)->OnEvent(e);
@@ -74,9 +79,13 @@ namespace Crisp
 			TimeStep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack)
+			if (!m_Minimized)
 			{
-				layer->OnUpdate(timestep);
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnUpdate(timestep);
+				}
+				
 			}
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
@@ -84,10 +93,6 @@ namespace Crisp
 				layer->OnImGuiRender();
 			}
 			m_ImGuiLayer->End();
-
-
-			auto [x, y] = Input::GetMousePosition();
-			
 
 			m_Window->OnUpdate();
 		}
@@ -99,6 +104,18 @@ namespace Crisp
 		m_Running = false;
 
 		return true;
+	}
+	bool Application::OnWindowResized(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 }
 

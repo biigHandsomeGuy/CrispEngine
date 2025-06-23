@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "WindowsInput.h"
 
-#include "Crisp/Application.h"
+#include "Crisp/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Crisp

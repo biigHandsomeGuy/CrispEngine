@@ -95,32 +95,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Crisp.h" />
-    <ClInclude Include="src\Crisp\Application.h" />
-    <ClInclude Include="src\Crisp\Core.h" />
+    <ClInclude Include="src\Crisp\Core\Application.h" />
+    <ClInclude Include="src\Crisp\Core\Core.h" />
+    <ClInclude Include="src\Crisp\Core\EntryPoint.h" />
+    <ClInclude Include="src\Crisp\Core\Input.h" />
+    <ClInclude Include="src\Crisp\Core\KeyCodes.h" />
+    <ClInclude Include="src\Crisp\Core\Layer.h" />
+    <ClInclude Include="src\Crisp\Core\LayerStack.h" />
+    <ClInclude Include="src\Crisp\Core\Log.h" />
+    <ClInclude Include="src\Crisp\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Crisp\Core\TimeStep.h" />
-    <ClInclude Include="src\Crisp\EntryPoint.h" />
+    <ClInclude Include="src\Crisp\Core\Window.h" />
     <ClInclude Include="src\Crisp\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Crisp\Events\Event.h" />
     <ClInclude Include="src\Crisp\Events\KeyEvent.h" />
     <ClInclude Include="src\Crisp\Events\MouseEvent.h" />
     <ClInclude Include="src\Crisp\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Crisp\Input.h" />
-    <ClInclude Include="src\Crisp\KeyCodes.h" />
-    <ClInclude Include="src\Crisp\Layer.h" />
-    <ClInclude Include="src\Crisp\LayerStack.h" />
-    <ClInclude Include="src\Crisp\Log.h" />
-    <ClInclude Include="src\Crisp\MouseButtonCodes.h" />
-    <ClInclude Include="src\Crisp\OrthographicCameraController.h" />
     <ClInclude Include="src\Crisp\Renderer\Buffer.h" />
     <ClInclude Include="src\Crisp\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Crisp\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Crisp\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Crisp\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Crisp\Renderer\Renderer.h" />
     <ClInclude Include="src\Crisp\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Crisp\Renderer\Shader.h" />
     <ClInclude Include="src\Crisp\Renderer\Texture.h" />
     <ClInclude Include="src\Crisp\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Crisp\Window.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
@@ -421,15 +421,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Crisp\Application.cpp" />
+    <ClCompile Include="src\Crisp\Core\Application.cpp" />
+    <ClCompile Include="src\Crisp\Core\Layer.cpp" />
+    <ClCompile Include="src\Crisp\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Crisp\Core\Log.cpp" />
     <ClCompile Include="src\Crisp\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Crisp\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Crisp\Layer.cpp" />
-    <ClCompile Include="src\Crisp\LayerStack.cpp" />
-    <ClCompile Include="src\Crisp\Log.cpp" />
-    <ClCompile Include="src\Crisp\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Crisp\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Crisp\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Crisp\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Crisp\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Crisp\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Crisp\Renderer\RendererAPI.cpp" />

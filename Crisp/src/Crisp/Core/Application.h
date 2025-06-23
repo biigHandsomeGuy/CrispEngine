@@ -2,9 +2,9 @@
 
 #include "Core.h"
 #include "Window.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
-#include "Crisp/LayerStack.h"
+#include "Crisp/Events/Event.h"
+#include "Crisp/Events/ApplicationEvent.h"
+#include "Crisp/Core/LayerStack.h"
 #include "Crisp/Core/TimeStep.h"
 #include "Crisp/ImGui/ImGuiLayer.h"
 
@@ -31,12 +31,14 @@ namespace Crisp
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent&);
+		bool OnWindowResized(WindowResizeEvent&);
 
 	private:
 
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		TimeStep m_TimeStep;
 		float m_LastFrameTime = 0.0f;

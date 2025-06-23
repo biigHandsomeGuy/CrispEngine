@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pch.h"
-#include "Crisp/Core.h"
+#include "Crisp/Core/Core.h"
 
 namespace Crisp
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Crisp/Core.h"
+#include "Crisp/Core/Core.h"
 #include "Crisp/Core/TimeStep.h"
 #include "Crisp/Events/Event.h"
 

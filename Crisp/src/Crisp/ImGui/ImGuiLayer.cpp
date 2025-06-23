@@ -8,7 +8,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Crisp/Application.h"
+#include "Crisp/Core/Application.h"
 
 namespace Crisp
 {

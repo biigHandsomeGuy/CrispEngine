@@ -15,19 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Crisp\Core.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crisp\Application.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\Crisp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crisp\EntryPoint.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crisp\Log.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\Crisp\Events\ApplicationEvent.h">
@@ -45,31 +33,13 @@
     <ClInclude Include="src\pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Crisp\Window.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crisp\Layer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crisp\LayerStack.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\Crisp\ImGui\ImGuiLayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Crisp\Input.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crisp\KeyCodes.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Crisp\MouseButtonCodes.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp">
@@ -987,27 +957,45 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\Crisp\OrthographicCameraController.h">
+    <ClInclude Include="src\Crisp\Core\Application.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\Core.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\EntryPoint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\Input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\KeyCodes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\Layer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\LayerStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\Log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\MouseButtonCodes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Core\Window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Crisp\Renderer\OrthographicCameraController.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Crisp\Application.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crisp\Log.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crisp\Layer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crisp\LayerStack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Crisp\ImGui\ImGuiLayer.cpp">
@@ -1064,7 +1052,19 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\Crisp\OrthographicCameraController.cpp">
+    <ClCompile Include="src\Crisp\Core\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crisp\Core\Layer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crisp\Core\LayerStack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crisp\Core\Log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crisp\Renderer\OrthographicCameraController.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

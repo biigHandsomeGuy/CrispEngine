@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "OrthographicCameraController.h"
 
-#include "Crisp/Input.h"
-#include "Crisp/KeyCodes.h"
+#include "Crisp/Core/Input.h"
+#include "Crisp/Core/KeyCodes.h"
 
 namespace Crisp
 {
@@ -60,8 +60,6 @@ namespace Crisp
 		m_ZoomLevel = std::max(0.25f, m_ZoomLevel);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 
-
-
 		return false;
 	}
 
@@ -70,9 +68,8 @@ namespace Crisp
 		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 
-
-
 		return false;
+
 	}
 
 }

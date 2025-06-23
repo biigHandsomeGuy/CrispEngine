@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Crisp/Core.h"
+#include "Crisp/Core/Core.h"
 
 namespace Crisp
 {

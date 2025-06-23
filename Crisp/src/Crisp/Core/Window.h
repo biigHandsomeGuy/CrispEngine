@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-#include "Crisp/Core.h"
+#include "Crisp/Core/Core.h"
 #include "Crisp/Events/Event.h"
 
 namespace Crisp

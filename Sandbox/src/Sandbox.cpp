@@ -139,7 +139,7 @@ public:
 		std::dynamic_pointer_cast<Crisp::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
-	void OnUpdate(Crisp::TimeStep ts) override
+	void OnUpdate(Crisp::TimeStep ts) override 
 	{
 		m_CameraController.OnUpdate(ts);
 

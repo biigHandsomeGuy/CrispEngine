@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Crisp/Window.h"
+#include "Crisp/Core/Window.h"
 #include "Crisp/Renderer/GraphicsContext.h"
 
 struct GLFWwindow;

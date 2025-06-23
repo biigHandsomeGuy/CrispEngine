@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Crisp/Input.h"
+#include "Crisp/Core/Input.h"
 
 namespace Crisp
 {
