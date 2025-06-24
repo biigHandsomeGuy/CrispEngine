@@ -6,7 +6,7 @@
 
 namespace Crisp
 {
-	VertexArray* VertexArray::Create()
+	std::shared_ptr<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -14,7 +14,7 @@ namespace Crisp
 			CR_CORE_ASSERT(false, "Unchoose RendererAPI");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return new OpenGLVertexArray();
+			return std::make_shared<OpenGLVertexArray>();
 		}
 
 		return nullptr;
