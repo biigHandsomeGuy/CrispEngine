@@ -24,5 +24,5 @@
 #include "Crisp/Renderer/OrthographicCameraController.h"
 
 // -----------EntryPoint---------
-#include "Crisp/Core/EntryPoint.h"
+// #include "Crisp/Core/EntryPoint.h"
 // ------------------------------
