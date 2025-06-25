@@ -990,6 +990,9 @@
     <ClInclude Include="src\Crisp\Renderer\OrthographicCameraController.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\Crisp\Renderer\Renderer2D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\pch.cpp">
@@ -1065,6 +1068,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\Crisp\Renderer\OrthographicCameraController.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Crisp\Renderer\Renderer2D.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

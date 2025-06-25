@@ -13,6 +13,7 @@
 
 // -----------Renderer-----------
 #include "Crisp/Renderer/Renderer.h"
+#include "Crisp/Renderer/Renderer2D.h"
 #include "Crisp/Renderer/Buffer.h"
 #include "Crisp/Renderer/GraphicsContext.h"
 #include "Crisp/Renderer/RenderCommand.h"
