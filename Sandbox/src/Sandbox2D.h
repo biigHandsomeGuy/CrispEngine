@@ -1,7 +1,11 @@
 #pragma once
 
 #include <Crisp.h>
-
+struct ProfileResult
+{
+	const char* Name;
+	float Time;
+};
 class Sandbox2D : public Crisp::Layer
 {
 public:
@@ -21,6 +25,12 @@ private:
 	std::shared_ptr<Crisp::VertexArray> m_SquareVA;
 
 	Crisp::OrthographicCameraController m_CameraController;
+
+	std::shared_ptr<Crisp::Texture2D> m_Texture;
+
+	
+
+	std::vector<ProfileResult> m_ProfileResults;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.7f, 1.0f };
 };

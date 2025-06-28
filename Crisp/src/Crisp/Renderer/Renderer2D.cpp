@@ -12,6 +12,7 @@ namespace Crisp
 	{
 		std::shared_ptr<VertexArray> QuadVertexArray;
 		std::shared_ptr<Shader> FlatShaderColor;
+		std::shared_ptr<Shader> TextureShader;
 	};
 
 	static Renderer2DStroage* s_Data;
@@ -24,10 +25,10 @@ namespace Crisp
 
 		float squareVertices[] =
 		{
-			-0.5f, -0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f
 		};
 
 		std::shared_ptr<Crisp::VertexBuffer> squareVB;
@@ -35,9 +36,10 @@ namespace Crisp
 
 		Crisp::BufferLayout squareLayout = {
 			{Crisp::ShaderDataType::Float3, "a_Position"},
+			{Crisp::ShaderDataType::Float2, "a_TexCoord"},
 		};
 		squareVB->SetLayout(squareLayout);
-
+		 
 		s_Data->QuadVertexArray->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[] = { 0, 1, 2, 1, 2, 3 };
@@ -48,6 +50,9 @@ namespace Crisp
 
 
 		s_Data->FlatShaderColor = Shader::Create("assets/shaders/FlatColorShader.glsl");
+		s_Data->TextureShader = Shader::Create("assets/shaders/Texture.glsl");
+		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetInt("u_Texture", 0);
 	}
 
 	void Renderer2D::Shutdown()
@@ -60,6 +65,8 @@ namespace Crisp
 		s_Data->FlatShaderColor->Bind();
 		s_Data->FlatShaderColor->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 		
+		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
@@ -81,6 +88,24 @@ namespace Crisp
 		s_Data->FlatShaderColor->SetMat4("u_Transform", transform);
 		s_Data->FlatShaderColor->SetFloat4("u_Color", color);
 		
+		s_Data->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
+	}
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, std::shared_ptr<Texture2D>& texture)
+	{
+		DrawQuad({ position.x, position.y, 0.0f }, size, texture);
+	}
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, std::shared_ptr<Texture2D>& texture)
+	{
+		s_Data->TextureShader->Bind();
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) *
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		 
+		s_Data->TextureShader->SetMat4("u_Transform", transform);
+
+		texture->Bind(0);
+
 		s_Data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
 	}
