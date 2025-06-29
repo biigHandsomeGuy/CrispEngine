@@ -60,28 +60,31 @@ void Sandbox2D::OnAttach()
 void Sandbox2D::OnDetach()
 {
 }
-
+#define PROFILE_SCOPE(name) Timer timer##__LINE__(name, [&](ProfileResult result) { m_ProfileResults.push_back(result); })
 void Sandbox2D::OnUpdate(Crisp::TimeStep ts)
 {
-	Timer timer("", [&](ProfileResult result) { m_ProfileResults.push_back(result); });
-
+	PROFILE_SCOPE("Sandbox2D::OnUpdate");
+	//PROFILE_SCOPE("Sandbox2D::OnUpdate");
 
 	{
-		//Timer timer("m_CameraController::OnUpdate", [&](ProfileResult result) { m_ProfileResults.push_back(result); });
+		PROFILE_SCOPE("m_CameraController.OnUpdate");
 		m_CameraController.OnUpdate(ts);
 	}
 
 	// Rendering
-	Crisp::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
-	Crisp::RenderCommand::Clear();
+	{
+		PROFILE_SCOPE("DrawCall");
+		Crisp::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+		Crisp::RenderCommand::Clear();
 
-	Crisp::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	
-	Crisp::Renderer2D::DrawQuad({ -0.7f, 0.0f }, { 1.0f, 1.0f }, { 0.2f, 0.7f, 0.3f, 1.0f });
-	Crisp::Renderer2D::DrawQuad({ 0.7f, 0.0f }, { 1.0f, 1.0f }, { 0.2f, 0.7f, 0.3f, 1.0f });
-	Crisp::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 0.3f, 0.3f }, m_Texture);
+		Crisp::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	Crisp::Renderer2D::EndScene();
+		Crisp::Renderer2D::DrawQuad({ -0.7f, 0.0f }, { 1.0f, 1.0f }, { 0.2f, 0.7f, 0.3f, 1.0f });
+		Crisp::Renderer2D::DrawQuad({ 0.7f, 0.0f }, { 1.0f, 1.0f }, { 0.2f, 0.7f, 0.3f, 1.0f });
+		Crisp::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 0.3f, 0.3f }, m_Texture);
+
+		Crisp::Renderer2D::EndScene();
+	}
 
 
 	//std::dynamic_pointer_cast<Crisp::OpenGLShader>(m_FlatColorShader)->Bind();
