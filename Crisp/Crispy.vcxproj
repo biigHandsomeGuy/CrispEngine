@@ -106,6 +106,7 @@
     <ClInclude Include="src\Crisp\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Crisp\Core\TimeStep.h" />
     <ClInclude Include="src\Crisp\Core\Window.h" />
+    <ClInclude Include="src\Crisp\Debug\Instrumentor.h" />
     <ClInclude Include="src\Crisp\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Crisp\Events\Event.h" />
     <ClInclude Include="src\Crisp\Events\KeyEvent.h" />
